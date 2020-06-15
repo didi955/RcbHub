@@ -43,7 +43,7 @@ public class PlayerJoin implements Listener {
     }
 
     private void initScoreboardPlayer(Player player){
-        ScoreboardSign scoreboard = new ScoreboardSign(player, "§6§lRushcubeland");
+        ScoreboardSign scoreboard = new ScoreboardSign(player, "§6§l§nRushcubeland");
         scoreboard.create();
         scoreboard.setLine(0, "§7 ");
         scoreboard.setLine(1, "§fCompte: ");
