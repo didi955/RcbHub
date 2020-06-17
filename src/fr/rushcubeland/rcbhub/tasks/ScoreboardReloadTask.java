@@ -26,7 +26,7 @@ public class ScoreboardReloadTask extends BukkitRunnable {
             Player player = (Player) sign.getKey();
             Optional<Account> account = RcbAPI.getInstance().getAccount(player);
             if(account.isPresent()){
-                sign.getValue().setLine(0, "§7 ");
+                sign.getValue().setLine(0, "§f ");
                 sign.getValue().setLine(1, "§fCompte: " + account.get().getDataRank().getRank().getPrefix() + "§f" + player.getDisplayName());
                 sign.getValue().setLine(2, "§c ");
                 sign.getValue().setLine(3, "§fCoins: §c" + account.get().getDataCoins().getCoins() + "§e");
