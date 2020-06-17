@@ -13,13 +13,13 @@ import java.util.Optional;
 
 public enum GuiUnit {
 
-    Main_Menu("§cMenu Principal", 64);
+    Main_Menu("§cMenu Principal", 54);
 
     private String name;
     private int size;
     private Inventory inv;
 
-    private static ArrayList<GuiUnit> Gui;
+    private static ArrayList<GuiUnit> Gui = new ArrayList<>();
 
     GuiUnit(String name, int size) {
         this.name = name;
@@ -60,14 +60,13 @@ public enum GuiUnit {
         for(GuiUnit gui : GuiUnit.values()){
             Inventory inv = Bukkit.createInventory(null, gui.getSize(), gui.getName());
             gui.setInv(inv);
-            getGui().add(gui);
+            Gui.add(gui);
         }
     }
 
     public static void initAllGui(){
         initGui();
         initContents();
-
     }
 
     private static void initContents(){
@@ -79,6 +78,5 @@ public enum GuiUnit {
 
     public static Optional<GuiUnit> getByName(String name){
         return Arrays.stream(values()).filter(r -> r.getName().equalsIgnoreCase(name)).findFirst();
-
     }
 }
