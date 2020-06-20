@@ -26,7 +26,6 @@ public class RcbHub extends JavaPlugin {
     @Override
     public void onDisable() {
         Bukkit.getLogger().info("RcbHub disabled");
-
     }
 
     private void registerListeners(){
@@ -36,6 +35,7 @@ public class RcbHub extends JavaPlugin {
         pm.registerEvents(new PlayerChat(), this);
         pm.registerEvents(new NPCRightClick(), this);
         pm.registerEvents(new PlayerInteract(), this);
+        pm.registerEvents(new InventoryClick(), this);
 
     }
 

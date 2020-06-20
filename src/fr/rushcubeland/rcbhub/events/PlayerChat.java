@@ -16,7 +16,7 @@ public class PlayerChat implements Listener {
         Player player = e.getPlayer();
         Optional<Account> account = RcbAPI.getInstance().getAccount(player);
         if(account.isPresent()){
-            e.setFormat(account.get().getDataRank().getRank().getPrefix() + player.getDisplayName() + " " + e.getMessage());
+            e.setFormat(account.get().getDataRank().getRank().getPrefix() + player.getDisplayName() + ": " + e.getMessage());
         }
         else
         {

@@ -23,7 +23,7 @@ public class PlayerQuit implements Listener {
         if(account.isPresent()){
             RankUnit rank = account.get().getDataRank().getRank();
             if(rank.getPower() < 20){
-                e.setQuitMessage(rank.getPrefix() + player.getDisplayName());
+                e.setQuitMessage(rank.getPrefix() + player.getDisplayName() + " §ca quitté le Lobby !");
             }
             else
             {
@@ -34,5 +34,6 @@ public class PlayerQuit implements Listener {
         {
             e.setQuitMessage(null);
         }
+        RcbAPI.getInstance().getAccount(player).ifPresent(Account::onLogout);
     }
 }

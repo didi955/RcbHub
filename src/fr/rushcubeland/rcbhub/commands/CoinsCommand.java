@@ -10,9 +10,10 @@ import org.bukkit.entity.Player;
 
 public class CoinsCommand implements CommandExecutor {
 
-    private RcbAPI rcbAPI;
+    private RcbHub rcbHub;
 
     public CoinsCommand(RcbHub rcbHub) {
+        this.rcbHub = rcbHub;
     }
 
     @Override
@@ -22,7 +23,7 @@ public class CoinsCommand implements CommandExecutor {
                 Player player = (Player) sender;
 
                 Account account = RcbAPI.getInstance().getAccount(player).get();
-                player.sendMessage("§6Votre solde de §eCoins est de de: §c" + account.getDataCoins().getCoins());
+                player.sendMessage("§6Votre solde de §eCoins §6est de: §c" + account.getDataCoins().getCoins() + " §e⛁");
             }
         }
         return false;

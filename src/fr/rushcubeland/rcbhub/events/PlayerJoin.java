@@ -4,43 +4,29 @@ import fr.rushcubeland.rcbapi.RcbAPI;
 import fr.rushcubeland.rcbapi.account.Account;
 import fr.rushcubeland.rcbapi.account.RankUnit;
 import fr.rushcubeland.rcbapi.tools.scoreboard.ScoreboardSign;
-import fr.rushcubeland.rcbhub.RcbHub;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.Optional;
 
 public class PlayerJoin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
-
-        Optional<Account> account = RcbAPI.getInstance().getAccount(player);
+        Account account = new Account(player.getUniqueId());
+        account.onLogin();
+        RcbAPI.getInstance().getTablist().sendTabList(player);
         initScoreboardPlayer(player);
-        if(account.isPresent()){
-            RankUnit rank = account.get().getDataRank().getRank();
-            RcbHub.getInstance().getServer().getScheduler().runTaskLater(RcbHub.getInstance(), new BukkitRunnable() {
-                @Override
-                public void run() {
-                    if(rank.getPower() < 20){
-                        e.setJoinMessage(rank.getPrefix() + player.getDisplayName());
-                    }
-                    else {
-                        e.setJoinMessage(null);
-                    }
-                }
-            }, 60L);
-
+        RankUnit rank = account.getDataRank().getRank();
+        RcbAPI.getInstance().getTablist().setTabListPlayer(player, rank);
+        if(rank.getPower() < 20){
+            e.setJoinMessage(rank.getPrefix() + player.getDisplayName() + " §ba rejoin le Lobby !");
         }
-        else
-        {
+        else {
             e.setJoinMessage(null);
-        }
 
+        }
     }
 
     private void initScoreboardPlayer(Player player){
@@ -51,9 +37,11 @@ public class PlayerJoin implements Listener {
         scoreboard.setLine(2, "§c ");
         scoreboard.setLine(3, "§fCoins: §c");
         scoreboard.setLine(4, "§7 ");
-        scoreboard.setLine(5, "§fJoueurs en ligne: ");
-        scoreboard.setLine(6, "§4 ");
-        scoreboard.setLine(7, "§eplay.rushcubeland.fr");
+        scoreboard.setLine(5, "§fPass de combat: §5Palier 14");
+        scoreboard.setLine(6, "§b ");
+        scoreboard.setLine(7, "§fJoueurs en ligne: ");
+        scoreboard.setLine(8, "§4 ");
+        scoreboard.setLine(9, "§eplay.rushcubeland.fr");
         RcbAPI.getInstance().boards.put(player, scoreboard);
 
     }

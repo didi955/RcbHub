@@ -1,8 +1,6 @@
 package fr.rushcubeland.rcbhub.gui;
 
-import fr.rushcubeland.rcbapi.tools.ItemBuilder;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -66,14 +64,11 @@ public enum GuiUnit {
 
     public static void initAllGui(){
         initGui();
-        initContents();
+        initAllContents();
     }
 
-    private static void initContents(){
-        ItemBuilder mycelium = new ItemBuilder(Material.MYCELIUM);
-        mycelium.setName("§6MYCELIUM");
-        mycelium.setLore("§c ", "§cLINE 2");
-        Main_Menu.addItem(15, mycelium.toItemStack());
+    private static void initAllContents(){
+        MenuPrincipal.initContents();
     }
 
     public static Optional<GuiUnit> getByName(String name){
