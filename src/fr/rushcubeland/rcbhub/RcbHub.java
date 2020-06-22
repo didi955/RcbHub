@@ -2,7 +2,6 @@ package fr.rushcubeland.rcbhub;
 
 import fr.rushcubeland.rcbhub.commands.CoinsCommand;
 import fr.rushcubeland.rcbhub.events.*;
-import fr.rushcubeland.rcbhub.gui.GuiUnit;
 import fr.rushcubeland.rcbhub.tasks.ScoreboardReloadTask;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -19,8 +18,6 @@ public class RcbHub extends JavaPlugin {
         registerCommands();
 
         reloadScoreboardTask();
-
-        GuiUnit.initAllGui();
     }
 
     @Override
@@ -36,6 +33,9 @@ public class RcbHub extends JavaPlugin {
         pm.registerEvents(new NPCRightClick(), this);
         pm.registerEvents(new PlayerInteract(), this);
         pm.registerEvents(new InventoryClick(), this);
+        pm.registerEvents(new PlaceBlock(), this);
+        pm.registerEvents(new BreakBlock(), this);
+        pm.registerEvents(new DropItem(), this);
 
     }
 

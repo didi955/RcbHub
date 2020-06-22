@@ -1,9 +1,12 @@
 package fr.rushcubeland.rcbhub.events;
 
-import fr.rushcubeland.rcbhub.gui.GuiUnit;
+import fr.rushcubeland.rcbhub.gui.MenuPrincipal;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class InventoryClick implements Listener {
 
@@ -13,8 +16,19 @@ public class InventoryClick implements Listener {
             e.setCancelled(true);
             return;
         }
-        if(e.getInventory() == GuiUnit.Main_Menu.getInv()){
-            e.setCancelled(true);
+        if(e.getWhoClicked() instanceof Player){
+            Player player = (Player) e.getWhoClicked();
+            ItemStack current = e.getCurrentItem();
+            if(e.getInventory() == MenuPrincipal.getSpecifiedInv(player)){
+                e.setCancelled(true);
+                if(current.getType().equals(Material.ACACIA_DOOR)){
+                    player.closeInventory();
+                }
+            }
+        }
+        else
+        {
+            return;
         }
     }
 }

@@ -1,6 +1,6 @@
 package fr.rushcubeland.rcbhub.events;
 
-import fr.rushcubeland.rcbhub.gui.GuiUnit;
+import fr.rushcubeland.rcbhub.gui.MenuPrincipal;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,7 +20,7 @@ public class PlayerInteract implements Listener {
         ItemStack current = e.getItem();
         if(e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR){
             if(current.getType() == Material.DIAMOND){
-                GuiUnit.Main_Menu.open(player);
+                MenuPrincipal.OpenInv(player);
 
             }
         }
