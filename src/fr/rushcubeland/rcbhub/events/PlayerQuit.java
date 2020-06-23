@@ -22,7 +22,7 @@ public class PlayerQuit implements Listener {
         Optional<Account> account = RcbAPI.getInstance().getAccount(player);
         if(account.isPresent()){
             RankUnit rank = account.get().getDataRank().getRank();
-            if(rank.getPower() < 20){
+            if(rank.getPower() <= 45){
                 e.setQuitMessage(rank.getPrefix() + player.getDisplayName() + " §ca quitté le Lobby !");
             }
             else

@@ -36,6 +36,9 @@ public class RcbHub extends JavaPlugin {
         pm.registerEvents(new PlaceBlock(), this);
         pm.registerEvents(new BreakBlock(), this);
         pm.registerEvents(new DropItem(), this);
+        pm.registerEvents(new CreatureSpawn(), this);
+        pm.registerEvents(new PickupItem(), this);
+        pm.registerEvents(new ChunksLoad(), this);
 
     }
 

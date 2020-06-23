@@ -22,7 +22,7 @@ public class MenuPrincipal {
 
     public static void OpenInv(Player player){
 
-        Inventory inventory = Bukkit.createInventory(null, 54, "§cMenu Principal");
+        Inventory inventory = Bukkit.createInventory(null, 54, "§6Menu Principal");
         initGlass(inventory, Material.CYAN_STAINED_GLASS_PANE);
 
         ItemStack dbr = new ItemBuilder(Material.BEACON).setName("§6DeterrentBorder §f[§cRANKED§f]").toItemStack();

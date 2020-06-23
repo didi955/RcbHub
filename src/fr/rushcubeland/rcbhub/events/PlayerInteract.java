@@ -19,7 +19,7 @@ public class PlayerInteract implements Listener {
         }
         ItemStack current = e.getItem();
         if(e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR){
-            if(current.getType() == Material.DIAMOND){
+            if(current.getType() == Material.COMPASS){
                 MenuPrincipal.OpenInv(player);
 
             }
