@@ -27,6 +27,7 @@ public class PlayerJoin implements Listener {
         player.getInventory().clear();
         player.setGameMode(GameMode.ADVENTURE);
         player.setHealth(20D);
+        player.setFoodLevel(20);
         player.sendTitle("§6Rushcubeland", "§cUnivers compétitif et stratégique !", 10, 70, 20);
         Account account = new Account(player.getUniqueId());
         account.onLogin();
