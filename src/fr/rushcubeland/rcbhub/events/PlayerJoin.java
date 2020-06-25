@@ -36,6 +36,7 @@ public class PlayerJoin implements Listener {
         giveJoinItems(player);
         initFlyPlayer(player);
         RankUnit rank = account.getDataRank().getRank();
+        initRankPlayerPermissions(player, rank);
         RcbAPI.getInstance().getTablist().setTabListPlayer(player, rank);
         if(rank.getPower() <= 45){
             e.setJoinMessage(rank.getPrefix() + player.getDisplayName() + " §ba rejoin le Lobby !");
@@ -98,6 +99,15 @@ public class PlayerJoin implements Listener {
         player.getInventory().setItem(4, magicClock);
         player.getInventory().setItem(8, settings);
         player.getInventory().setItem(1, profil);
+    }
+
+    private void initRankPlayerPermissions(Player player, RankUnit rank){
+        if(rank.getPermissions().isEmpty()){
+            return;
+        }
+        for(String perm : rank.getPermissions()){
+            player.addAttachment(RcbAPI.getInstance()).setPermission(perm, true);
+        }
     }
 
 }
