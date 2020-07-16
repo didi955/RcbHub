@@ -22,12 +22,12 @@ public class RcbHub extends JavaPlugin {
 
         reloadScoreboardTask();
 
-        Bukkit.getLogger().info("RcbHub enabled");
+        RcbHub.getInstance().getLogger().info("RcbHub enabled");
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getLogger().info("RcbHub disabled");
+        RcbHub.getInstance().getLogger().info("RcbHub disabled");
         instance = null;
     }
 
