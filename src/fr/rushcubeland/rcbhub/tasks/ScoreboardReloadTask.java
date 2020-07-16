@@ -29,13 +29,13 @@ public class ScoreboardReloadTask extends BukkitRunnable {
                 sign.getValue().setLine(0, "§f ");
                 sign.getValue().setLine(1, "§fCompte: " + account.get().getDataRank().getRank().getPrefix() + ChatColor.WHITE + player.getDisplayName());
                 sign.getValue().setLine(2, "§c ");
-                sign.getValue().setLine(3, "§fCoins: " + ChatColor.RED + account.get().getDataCoins().getCoins() + ChatColor.YELLOW + " ⛁");
+                sign.getValue().setLine(3, "§fCoins: " + ChatColor.RED + account.get().getDataCoins().getCoins() + " " + ChatColor.YELLOW + "⛁");
                 sign.getValue().setLine(4, "§7 ");
                 sign.getValue().setLine(5, "§fPass de combat: §5Palier 14");
                 sign.getValue().setLine(6, "§b ");
-                sign.getValue().setLine(7, "§fJoueurs en ligne: " + Network.getNetworkSlots());
+                sign.getValue().setLine(7, "§fJoueurs en ligne: §7" + Network.getNetworkSlots());
                 sign.getValue().setLine(8, "§4 ");
-                sign.getValue().setLine(9,  ChatColor.YELLOW + "play.rushcubeland.fr");
+                sign.getValue().setLine(9,  ChatColor.YELLOW + "play.rushcubel" + ChatColor.YELLOW + "and.fr");
             }
         }
     }
