@@ -5,6 +5,7 @@ import fr.rushcubeland.rcbapi.account.Account;
 import fr.rushcubeland.rcbapi.network.Network;
 import fr.rushcubeland.rcbapi.tools.scoreboard.ScoreboardSign;
 import fr.rushcubeland.rcbhub.RcbHub;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -22,19 +23,19 @@ public class ScoreboardReloadTask extends BukkitRunnable {
     @Override
     public void run() {
         for(Map.Entry<Player, ScoreboardSign> sign : RcbAPI.getInstance().boards.entrySet()){
-            Player player = (Player) sign.getKey();
+            Player player = sign.getKey();
             Optional<Account> account = RcbAPI.getInstance().getAccount(player);
             if(account.isPresent()){
                 sign.getValue().setLine(0, "§f ");
-                sign.getValue().setLine(1, "§fCompte: " + account.get().getDataRank().getRank().getPrefix() + "§f" + player.getDisplayName());
+                sign.getValue().setLine(1, "§fCompte: " + account.get().getDataRank().getRank().getPrefix() + ChatColor.WHITE + player.getDisplayName());
                 sign.getValue().setLine(2, "§c ");
-                sign.getValue().setLine(3, "§fCoins: §c" + account.get().getDataCoins().getCoins() + " §e⛁");
+                sign.getValue().setLine(3, "§fCoins: " + ChatColor.RED + account.get().getDataCoins().getCoins() + ChatColor.YELLOW + " ⛁");
                 sign.getValue().setLine(4, "§7 ");
                 sign.getValue().setLine(5, "§fPass de combat: §5Palier 14");
                 sign.getValue().setLine(6, "§b ");
                 sign.getValue().setLine(7, "§fJoueurs en ligne: " + Network.getNetworkSlots());
                 sign.getValue().setLine(8, "§4 ");
-                sign.getValue().setLine(9, "§eplay.rushcubeland.fr");
+                sign.getValue().setLine(9,  ChatColor.YELLOW + "play.rushcubeland.fr");
             }
         }
     }

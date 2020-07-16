@@ -10,19 +10,25 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class RcbHub extends JavaPlugin {
 
     private static RcbHub instance;
+    private String channel = "rcbproxy:main";
 
     @Override
     public void onEnable() {
-        Bukkit.getLogger().info("RcbHub enabled");
+        instance = this;
         registerListeners();
         registerCommands();
 
+        Bukkit.getMessenger().registerOutgoingPluginChannel(this, channel);
+
         reloadScoreboardTask();
+
+        Bukkit.getLogger().info("RcbHub enabled");
     }
 
     @Override
     public void onDisable() {
         Bukkit.getLogger().info("RcbHub disabled");
+        instance = null;
     }
 
     private void registerListeners(){

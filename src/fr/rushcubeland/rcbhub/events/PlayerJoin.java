@@ -86,9 +86,9 @@ public class PlayerJoin implements Listener {
         menupm.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         menup.setItemMeta(menupm);
 
-        ItemStack settings = new ItemBuilder(Material.COMPARATOR).setName("§cParamètres").setLore("§f ", "").toItemStack();
+        ItemStack settings = new ItemBuilder(Material.COMPARATOR).setName("§cPréférences").setLore("§f ", "").toItemStack();
 
-        ItemStack magicClock = new ItemBuilder(Material.CLOCK).setName("§0Ombre de Tartare: §cDésactivé").setLore("§f ", "").toItemStack();
+        ItemStack magicClock = new ItemBuilder(Material.CLOCK).setName("§7Ombre de Tartare: §cDésactivé").setLore("§f ", "").toItemStack();
 
         ItemStack profil = new ItemBuilder(Material.PLAYER_HEAD).setName("§eVotre profil").setLore("§f ", "").toItemStack();
         SkullMeta profilm = (SkullMeta) profil.getItemMeta();

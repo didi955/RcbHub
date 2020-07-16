@@ -12,7 +12,7 @@ public class InventoryClick implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent e){
-        if(e.getInventory() == null || e.getCurrentItem() == null){
+        if(e.getCurrentItem() == null){
             e.setCancelled(true);
             return;
         }
