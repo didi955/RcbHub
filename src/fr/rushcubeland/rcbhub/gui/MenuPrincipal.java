@@ -1,7 +1,6 @@
 package fr.rushcubeland.rcbhub.gui;
 
 import fr.rushcubeland.rcbapi.RcbAPI;
-import fr.rushcubeland.rcbapi.account.Account;
 import fr.rushcubeland.rcbapi.tools.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -14,11 +13,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.HashMap;
-import java.util.Optional;
 
 public class MenuPrincipal {
 
-    private static HashMap<Player, Inventory> GUI = new HashMap<>();
+    private static final HashMap<Player, Inventory> GUI = new HashMap<>();
 
     public static void OpenInv(Player player){
 
@@ -35,14 +33,25 @@ public class MenuPrincipal {
         ItemStack db = new ItemBuilder(Material.BEACON).setName("§6DeterrentBorder §f[CASUAL]").toItemStack();
         inventory.setItem(21, db);
 
-        Optional<Account> account = RcbAPI.getInstance().getAccount(player);
-        if(account.isPresent()){
-            ItemStack headp = new ItemBuilder(Material.PLAYER_HEAD).setName("§6Informations:").setLore("§c ", "§fGrade: " + account.get().getDataRank().getRank().getPrefix(), "§fCoins: §c" + account.get().getDataCoins().getCoins() + " §e⛁", "§fPalier Pass de combat: §a14", "§f   ", "§aPlus d'avantages ?", "§ehttps://store.rushcubeland.fr").toItemStack();
+        RcbAPI.getInstance().getAccountCallback(player, account -> {
+
+            final ItemStack headp;
+
+            if(account.getRank().getPrefix().equals("")){
+                headp = new ItemBuilder(Material.PLAYER_HEAD).setName("§6Informations:").setLore("§c ", "§fGrade: §7[Joueur]" , "§fCoins: §c" + account.getCoins() + " §e⛁", "§fPalier Pass de combat: §a14", "§f   ", "§aPlus d'avantages ?", "§ehttps://store.rushcubeland.fr").toItemStack();
+            }
+            else
+            {
+                headp = new ItemBuilder(Material.PLAYER_HEAD).setName("§6Informations:").setLore("§c ", "§fGrade: " + account.getRank().getPrefix(), "§fCoins: §c" + account.getCoins() + " §e⛁", "§fPalier Pass de combat: §a14", "§f   ", "§aPlus d'avantages ?", "§ehttps://store.rushcubeland.fr").toItemStack();
+            }
+
             SkullMeta headpm = (SkullMeta) headp.getItemMeta();
             headpm.setOwningPlayer(player);
             headp.setItemMeta(headpm);
             inventory.setItem(27, headp);
-        }
+
+
+                });
 
         ItemStack jump = new ItemBuilder(Material.GOLDEN_BOOTS).setName("§bParcours").setLore("§b ","§7Saute de bloc en bloc pour terminer le parcours", "§4 ", "§e➤ Se teleporter").toItemStack();
         inventory.setItem(35, jump);
@@ -52,7 +61,6 @@ public class MenuPrincipal {
 
         ItemStack close = new ItemBuilder(Material.ACACIA_DOOR).setName("§cFermer").toItemStack();
         inventory.setItem(49, close);
-
 
 
         GUI.put(player, inventory);
